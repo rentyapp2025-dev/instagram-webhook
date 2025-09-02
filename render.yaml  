@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: instagram-webhook
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn src.main:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    envVars:
+      - key: VERIFY_TOKEN
+        sync: false
+      - key: IG_PAGE_TOKEN
+        sync: false
+      - key: IG_USER_ID
+        sync: false
+      - key: APP_SECRET
+        sync: false
